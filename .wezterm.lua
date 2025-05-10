@@ -34,11 +34,11 @@ local function tab_title(tab_info)
 	return tab_info.active_pane.title
 end
 
-config.use_fancy_tab_bar = false
+-- config.use_fancy_tab_bar = false
 config.tab_max_width = 32
--- config.show_tab_index_in_tab_bar = true
+config.show_tab_index_in_tab_bar = true
 config.show_new_tab_button_in_tab_bar = false
--- config.show_close_tab_button_in_tabs = true
+config.show_close_tab_button_in_tabs = false
 
 wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
 	-- Use the resolved palette's background color
@@ -48,6 +48,7 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
 
 	local background = background_color
 	local foreground = "#808080"
+	local capcolor = "#FF0000"
 
 	local active_bg = "#0033dd"
 	-- local inactive_bg =
@@ -73,7 +74,7 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
 		{ Background = { Color = background } },
 		{ Foreground = { Color = foreground } },
 		{ Text = title },
-		{ Background = { Color = edge_background } },
+		{ Background = { Color = capcolor } },
 		{ Foreground = { Color = edge_foreground } },
 		{ Text = CLOSE .. " " },
 	}
