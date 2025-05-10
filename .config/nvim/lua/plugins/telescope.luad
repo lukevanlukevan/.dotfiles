@@ -1,0 +1,12 @@
+-- Add this to ~/.config/nvim/lua/plugins/telescope.lua
+return {
+  -- Telescope for fuzzy finding
+  {
+    "nvim-telescope/telescope.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      -- Optional dependencies for better performance and features
+      { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+    },
+  },
+}

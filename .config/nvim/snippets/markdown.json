@@ -1,0 +1,13 @@
+{
+  "frontmatter": {
+    "prefix": "frontmatter",
+    "body": [
+      "---",
+      "title: \"${1:Empty Page}\"",
+      "tags: [\"${2:tag}\"]",
+      "date: $CURRENT_YEAR-$CURRENT_MONTH-${CURRENT_DATE}",
+      "disabled: false",
+      "---"
+    ]
+  }
+}
