@@ -1,5 +1,6 @@
 -- Pull in the wezterm API
 local wezterm = require("wezterm")
+local act = wezterm.action
 
 -- This will hold the configuration.
 local config = wezterm.config_builder()
@@ -14,6 +15,85 @@ config.color_scheme = "Tokyo Night Moon"
 
 -- window deco
 config.window_decorations = "NONE|RESIZE"
+config.window_padding = {
+	top = 10.0,
+	bottom = 0.0,
+	left = 10.0,
+	right = 10.0,
+}
+
+-- tab bars:
+local function tab_title(tab_info)
+	local title = tab_info.tab_title
+	-- if the tab title is explicitly set, take that
+	if title and #title > 0 then
+		return title
+	end
+	-- Otherwise, use the title from the active pane
+	-- in that tab
+	return tab_info.active_pane.title
+end
+
+config.use_fancy_tab_bar = false
+config.tab_max_width = 32
+-- config.show_tab_index_in_tab_bar = true
+-- config.show_close_tab_button_in_tabs = true
+
+wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
+	local edge_background = "#444444"
+	local background = "#1b1032"
+	local foreground = "#808080"
+
+	if tab.is_active then
+		background = "#0033dd"
+		foreground = "#eeeeee"
+	elseif hover then
+		background = "#3b3052"
+		foreground = "#909090"
+	end
+	local CLOSE = wezterm.nerdfonts.ple_right_half_circle_thick
+	local OPEN = wezterm.nerdfonts.ple_left_half_circle_thick
+	local edge_foreground = background
+
+	local title = "" .. tab_title(tab) .. " | " .. tab.tab_index
+	-- title = tab.index
+	-- ensure that the titles fit in the available space,
+	-- and that we have room for the edges.
+	-- title = wezterm.truncate_right(title, max_width)
+
+	return {
+		{ Background = { Color = edge_background } },
+		{ Foreground = { Color = edge_foreground } },
+		{ Text = " " .. OPEN },
+		{ Background = { Color = background } },
+		{ Foreground = { Color = foreground } },
+		{ Text = title },
+		{ Background = { Color = edge_background } },
+		{ Foreground = { Color = edge_foreground } },
+		{ Text = CLOSE .. " " },
+	}
+end)
+
+-- My keyamps:
+config.debug_key_events = true
+config.leader = { key = "a", mods = "CTRL" }
+config.keys = {
+	{
+		key = "e",
+		mods = "LEADER",
+		action = act.PromptInputLine({
+			description = "Enter new name for tab",
+			action = wezterm.action_callback(function(window, pane, line)
+				-- line will be `nil` if they hit escape without entering anything
+				-- An empty string if they just hit enter
+				-- Or the actual line of text they wrote
+				if line then
+					window:active_tab():set_title(line)
+				end
+			end),
+		}),
+	},
+}
 
 -- and finally, return the configuration to wezterm
 return config
