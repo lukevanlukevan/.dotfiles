@@ -34,11 +34,11 @@ local function tab_title(tab_info)
 	return tab_info.active_pane.title
 end
 
--- config.use_fancy_tab_bar = false
+config.use_fancy_tab_bar = false
 config.tab_max_width = 32
 config.show_tab_index_in_tab_bar = true
 config.show_new_tab_button_in_tab_bar = false
-config.show_close_tab_button_in_tabs = false
+-- config.show_close_tab_button_in_tabs = false
 
 wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
 	-- Use the resolved palette's background color
@@ -48,35 +48,51 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
 
 	local background = background_color
 	local foreground = "#808080"
-	local capcolor = "#FF0000"
+
+	local tabcols = { "#FF6600", "#44DD00", "#0000FF" }
 
 	local active_bg = "#0033dd"
 	-- local inactive_bg =
 
-	if tab.is_active then
-		background = "#0033dd"
-		foreground = "#eeeeee"
-	elseif hover then
-		background = "#3b3052"
-		foreground = "#909090"
-	end
+	-- if tab.is_active then
+	-- 	background = "#0033dd"
+	-- 	foreground = "#eeeeee"
+	-- elseif hover then
+	-- 	background = "#3b3052"
+	-- 	foreground = "#909090"
+	-- end
+
+	local colbackground = tabcols[tab.tab_index + 1]
 
 	local CLOSE = wezterm.nerdfonts.ple_right_half_circle_thick
 	local OPEN = wezterm.nerdfonts.ple_left_half_circle_thick
-	local edge_foreground = background
+	-- local edge_foreground = background
 
-	local title = "" .. tab.active_pane.title .. " | " .. tab.tab_index
+	-- local title = "" .. tab.active_pane.title .. " | " .. tab.tab_index
+	local title = "" .. tab.active_pane.title .. " "
+	local tip = "" .. tab.tab_index
+
+	local edgebg = background_color
+	-- local bg = "#0033dd"
+	local bg = "#1111DD"
+	local fg = "white"
 
 	return {
-		{ Background = { Color = edge_background } },
-		{ Foreground = { Color = edge_foreground } },
+		{ Background = { Color = edgebg } },
+		{ Foreground = { Color = bg } },
 		{ Text = " " .. OPEN },
-		{ Background = { Color = background } },
-		{ Foreground = { Color = foreground } },
+		{ Background = { Color = bg } },
+		{ Foreground = { Color = fg } },
 		{ Text = title },
-		{ Background = { Color = capcolor } },
-		{ Foreground = { Color = edge_foreground } },
-		{ Text = CLOSE .. " " },
+		{ Background = { Color = bg } },
+		{ Foreground = { Color = colbackground } },
+		{ Text = OPEN },
+		{ Background = { Color = colbackground } },
+		{ Foreground = { Color = fg } },
+		{ Text = tip },
+		{ Background = { Color = edgebg } },
+		{ Foreground = { Color = colbackground } },
+		{ Text = CLOSE },
 	}
 end)
 
