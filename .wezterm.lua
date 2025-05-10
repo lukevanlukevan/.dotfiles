@@ -40,9 +40,16 @@ config.tab_max_width = 32
 -- config.show_close_tab_button_in_tabs = true
 
 wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
-	local edge_background = "#444444"
-	local background = "#1b1032"
+	-- Use the resolved palette's background color
+	local palette = config.resolved_palette
+	local background_color = palette and palette.background or "#1b1032"
+	local edge_background = background_color -- use theme background for edge
+
+	local background = background_color
 	local foreground = "#808080"
+
+	local active_bg = "#0033dd"
+	-- local inactive_bg =
 
 	if tab.is_active then
 		background = "#0033dd"
@@ -51,15 +58,12 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
 		background = "#3b3052"
 		foreground = "#909090"
 	end
+
 	local CLOSE = wezterm.nerdfonts.ple_right_half_circle_thick
 	local OPEN = wezterm.nerdfonts.ple_left_half_circle_thick
 	local edge_foreground = background
 
-	local title = "" .. tab_title(tab) .. " | " .. tab.tab_index
-	-- title = tab.index
-	-- ensure that the titles fit in the available space,
-	-- and that we have room for the edges.
-	-- title = wezterm.truncate_right(title, max_width)
+	local title = "" .. tab.active_pane.title .. " | " .. tab.tab_index
 
 	return {
 		{ Background = { Color = edge_background } },
