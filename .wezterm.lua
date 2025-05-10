@@ -37,6 +37,7 @@ end
 config.use_fancy_tab_bar = false
 config.tab_max_width = 32
 -- config.show_tab_index_in_tab_bar = true
+config.show_new_tab_button_in_tab_bar = false
 -- config.show_close_tab_button_in_tabs = true
 
 wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
@@ -96,6 +97,11 @@ config.keys = {
 				end
 			end),
 		}),
+	},
+	{
+		key = "w",
+		mods = "LEADER",
+		action = act.CloseCurrentTab({ confirm = false }),
 	},
 }
 
