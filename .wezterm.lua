@@ -74,7 +74,8 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
 
 	local edgebg = background_color
 	-- local bg = "#0033dd"
-	local bg = "#1111DD"
+	local bg = "#434366"
+	-- local bg = wezterm.color.from_hsla(240, 0.1, 0.3, 0)
 	local fg = "white"
 
 	return {
@@ -84,12 +85,12 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
 		{ Background = { Color = bg } },
 		{ Foreground = { Color = fg } },
 		{ Text = title },
-		{ Background = { Color = bg } },
-		{ Foreground = { Color = colbackground } },
-		{ Text = OPEN },
+		-- { Background = { Color = bg } },
+		-- { Foreground = { Color = colbackground } },
+		-- { Text = OPEN },
 		{ Background = { Color = colbackground } },
 		{ Foreground = { Color = fg } },
-		{ Text = tip },
+		{ Text = " " .. tip },
 		{ Background = { Color = edgebg } },
 		{ Foreground = { Color = colbackground } },
 		{ Text = CLOSE },
