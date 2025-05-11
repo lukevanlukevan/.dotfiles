@@ -78,6 +78,10 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
 	-- local bg = wezterm.color.from_hsla(240, 0.1, 0.3, 0)
 	local fg = "white"
 
+	if tab.is_active then
+		bg = "#8888ee"
+	end
+
 	return {
 		{ Background = { Color = edgebg } },
 		{ Foreground = { Color = bg } },
