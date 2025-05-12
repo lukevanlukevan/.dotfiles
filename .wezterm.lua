@@ -5,9 +5,16 @@ local act = wezterm.action
 -- This will hold the configuration.
 local config = wezterm.config_builder()
 
+local is_darwin = function()
+	return wezterm.target_triple:find("darwin") ~= nil
+end
 -- This is where you actually apply your config choices
-
-config.font_size = 15.0
+if is_darwin() then
+	config.font_size = 15.0
+else
+	config.font_size = 11.0
+	config.default_prog = { "powershell.exe", "-NoLogo" }
+end
 
 -- For example, changing the color scheme:
 
@@ -69,7 +76,7 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
 	-- local edge_foreground = background
 
 	-- local title = "" .. tab.active_pane.title .. " | " .. tab.tab_index
-	local title = "" .. tab.active_pane.title .. " "
+	local title = "" .. tab_title(tab) .. " "
 	local tip = "" .. tab.tab_index
 
 	local edgebg = background_color
@@ -124,6 +131,11 @@ config.keys = {
 		key = "w",
 		mods = "LEADER",
 		action = act.CloseCurrentTab({ confirm = false }),
+	},
+	{
+		key = "t",
+		mods = "LEADER",
+		action = act.SpawnTab("DefaultDomain"),
 	},
 }
 
