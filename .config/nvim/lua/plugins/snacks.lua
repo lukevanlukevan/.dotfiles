@@ -28,6 +28,9 @@ return {
         },
       },
     },
+    image = {
+      enabled = true,
+    },
   },
   keys = {
     {

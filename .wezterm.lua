@@ -86,7 +86,7 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
 	local fg = "white"
 
 	if tab.is_active then
-		bg = "#8888ee"
+		bg = "#5f69a0"
 	end
 
 	return {
