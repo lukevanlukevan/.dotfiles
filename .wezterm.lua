@@ -69,7 +69,7 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
 	-- 	foreground = "#909090"
 	-- end
 
-	local colbackground = tabcols[tab.tab_index + 1]
+	local colbackground = tabcols[math.fmod(tab.tab_index, #tabcols) + 1]
 
 	local CLOSE = wezterm.nerdfonts.ple_right_half_circle_thick
 	local OPEN = wezterm.nerdfonts.ple_left_half_circle_thick
