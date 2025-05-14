@@ -16,6 +16,8 @@ else
 	config.default_prog = { "powershell.exe", "-NoLogo" }
 end
 
+config.enable_kitty_graphics = true
+
 -- For example, changing the color scheme:
 
 config.color_scheme = "Tokyo Night Moon"
