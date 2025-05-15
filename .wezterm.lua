@@ -79,7 +79,7 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
 
 	-- local title = "" .. tab.active_pane.title .. " | " .. tab.tab_index
 	local title = "" .. tab_title(tab) .. " "
-	local tip = "" .. tab.tab_index
+	local tip = "" .. (tab.tab_index + 1)
 
 	local edgebg = background_color
 	-- local bg = "#0033dd"
