@@ -66,7 +66,7 @@ M.start_timer = function(duration)
 	M.pomodorini_create()
 	local bufnr = state.bufnr
 	local win_id = state.win_id
-	vim.api.nvim_buf_set_option(bufnr, "bufhidden", "wipe")
+	vim.api.nvim_buf_set_option(bufnr, "bufhidden", "hide")
 
 	-- Keymaps: close with 'c'
 	vim.keymap.set("n", "c", function()
@@ -118,8 +118,8 @@ M.start_timer = function(duration)
 
 				local done_lines = {
 					" Pomodorini Timer ",
-					" ✅ Done!",
-					"[R]estart [B]reak [C]lose",
+					" ✅Done!",
+					" [R]estart [B]reak [C]lose",
 				}
 				state.lines = done_lines
 				vim.bo[bufnr].modifiable = true
@@ -147,10 +147,35 @@ end
 
 M.pomodorini_show = function()
 	if state.hidden and state.bufnr and vim.api.nvim_buf_is_valid(state.bufnr) then
-		vim.api.nvim_open_win(state.bufnr, enter, config)
+		local width = 30
+		local height = 3
+		local win_opts = {
+			relative = "editor",
+			width = width,
+			height = height,
+			row = 1,
+			col = vim.o.columns - width - 2,
+			style = "minimal",
+			border = "rounded",
+		}
+
+		local win_id = vim.api.nvim_open_win(state.bufnr, false, win_opts)
+		state.win_id = win_id
+		state.hidden = false
+
+		-- Re-apply keymaps (if necessary)
+		vim.keymap.set("n", "h", function()
+			vim.cmd("PomodoriniHide")
+		end, { buffer = state.bufnr, nowait = true, silent = true })
+
+		-- Re-render last known lines
+		if state.lines then
+			vim.bo[state.bufnr].modifiable = true
+			vim.api.nvim_buf_set_lines(state.bufnr, 0, -1, false, state.lines)
+			vim.bo[state.bufnr].modifiable = false
+		end
 	end
 end
-
 -- User command to show the window
 -- M.pomodorini_show = function()
 -- 	if state.hidden and state.bufnr and vim.api.nvim_buf_is_valid(state.bufnr) then

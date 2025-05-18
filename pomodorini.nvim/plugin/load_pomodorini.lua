@@ -1,4 +1,4 @@
-vim.api.nvim_create_user_command("PomodoriniLoad", function(args)
+vim.api.nvim_create_user_command("PomodoriniStart", function(args)
 	if args.args then
 		local duration = tonumber(args.args) -- Convert the string to a number
 		if duration then
