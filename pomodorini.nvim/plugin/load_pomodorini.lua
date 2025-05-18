@@ -10,3 +10,12 @@ vim.api.nvim_create_user_command("PomodoriniLoad", function(args)
 end, {
 	nargs = 1, -- Require exactly one argument
 })
+
+vim.api.nvim_create_user_command("PomodoriniHide", function()
+	require("pomodorini").pomodorini_hide()
+end, {})
+
+-- User command to show the window
+vim.api.nvim_create_user_command("PomodoriniShow", function()
+	require("pomodorini").pomodorini_show()
+end, {})
