@@ -173,6 +173,15 @@ M.pomodorini_hide = function()
 end
 
 M.pomodorini_show = function()
+	if state.win_id and vim.api.nvim_win_is_valid(state.win_id) then
+		local current_buf = vim.api.nvim_win_get_buf(state.win_id)
+		if current_buf ~= state.bufnr then
+			-- The buffer was replaced, so treat the window as invalid
+			state.win_id = nil
+			state.hidden = true
+		end
+	end
+
 	if state.hidden and state.bufnr and vim.api.nvim_buf_is_valid(state.bufnr) then
 		local width = WIDTH
 		local height = 2
