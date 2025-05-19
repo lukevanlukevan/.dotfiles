@@ -10,3 +10,5 @@ vim.keymap.set("n", "<Left>", ':echoe "Use h"<CR>', { noremap = true, silent = t
 vim.keymap.set("n", "<Right>", ':echoe "Use l"<CR>', { noremap = true, silent = true })
 vim.keymap.set("n", "<Up>", ':echoe "Use k"<CR>', { noremap = true, silent = true })
 vim.keymap.set("n", "<Down>", ':echoe "Use j"<CR>', { noremap = true, silent = true })
+
+vim.api.nvim_set_keymap("n", "<leader>ii", ":lua Snacks.image.hover()<cr>", { silent = true })

@@ -49,12 +49,13 @@ M.pomodorini_create = function()
 		col = vim.o.columns - width - 2,
 		style = "minimal",
 		border = "rounded",
-		title = "Pomodorini",
+		title = "🍅 Pomodorini",
 	}
 
 	local win_id = vim.api.nvim_open_win(bufnr, false, win_opts)
 	state.win_id = win_id
 	state.hidden = false
+	print(state.win_id)
 end
 
 local function start_timer_for(duration, on_done)
@@ -84,7 +85,7 @@ local function start_timer_for(duration, on_done)
 				state.timer = nil
 
 				local done_lines = {
-					" ✅Done!",
+					" Timer complete.",
 					" [R]estart [B]reak [C]lose",
 				}
 				state.lines = done_lines
@@ -152,11 +153,15 @@ M.start_timer = function(duration, on_done)
 
 	-- Keymap: restart with 'r'
 	vim.keymap.set("n", "r", function()
-		print("Testing R keymap")
 		start_timer_for(25, start_timer_for(1))
 	end, { buffer = bufnr, nowait = true, silent = true, noremap = true })
 
-	start_timer_for(duration, on_done)
+	-- Keymap: break with 'b'
+	vim.keymap.set("n", "b", function()
+		start_timer_for(5, start_timer_for(1))
+	end, { buffer = bufnr, nowait = true, silent = true, noremap = true })
+
+	start_timer_for(duration, start_timer_for(5))
 end
 
 M.pomodorini_hide = function()
@@ -170,7 +175,7 @@ end
 M.pomodorini_show = function()
 	if state.hidden and state.bufnr and vim.api.nvim_buf_is_valid(state.bufnr) then
 		local width = WIDTH
-		local height = 3
+		local height = 2
 		local win_opts = {
 			relative = "editor",
 			width = width,
@@ -179,6 +184,7 @@ M.pomodorini_show = function()
 			col = vim.o.columns - width - 2,
 			style = "minimal",
 			border = "rounded",
+			title = "🍅 Pomodorini",
 		}
 
 		local win_id = vim.api.nvim_open_win(state.bufnr, false, win_opts)

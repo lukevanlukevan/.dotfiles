@@ -2,7 +2,10 @@ vim.api.nvim_create_user_command("PomodoriniStart", function(args)
 	if args.args then
 		local duration = tonumber(args.args) -- Convert the string to a number
 		if duration then
-			require("pomodorini").start_timer(duration)
+			require("pomodorini").start_timer(duration, function()
+				-- Start break timer after work timer finishes
+				require("pomodorini").start_timer(5)
+			end)
 		else
 			vim.notify("Please provide a valid number", vim.log.levels.ERROR)
 		end
