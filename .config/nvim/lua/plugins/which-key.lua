@@ -3,12 +3,6 @@ return {
   opts = {
     -- Set helix preset layout
     preset = "helix",
-    -- Register your key groups
-    spec = {
-      { "d", group = "delete", mode = { "n", "v" } },
-      { "da", group = "around", mode = { "n", "v" } },
-      { "dd", "dd", desc = "Delete line", mode = { "n", "v" } },
-    },
     -- Customize the window appearance
     win = {
       border = "rounded",

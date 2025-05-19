@@ -16,7 +16,6 @@ return {
   dependencies = {
     "nvim-treesitter/nvim-treesitter",
     "nvim-telescope/telescope.nvim", -- optional
-    "neovim/nvim-lspconfig", -- optional
   },
   opts = {}, -- You can add your plugin-specific options here
   config = function(_, opts)
