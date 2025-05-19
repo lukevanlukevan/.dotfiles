@@ -47,6 +47,7 @@ config.use_fancy_tab_bar = false
 config.tab_max_width = 32
 config.show_tab_index_in_tab_bar = true
 config.show_new_tab_button_in_tab_bar = false
+config.hide_tab_bar_if_only_one_tab = true
 -- config.show_close_tab_button_in_tabs = false
 
 wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
