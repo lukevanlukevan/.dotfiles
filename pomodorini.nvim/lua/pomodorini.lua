@@ -94,6 +94,8 @@ M.start_timer = function(duration)
 	local timer = vim.loop.new_timer()
 	state.timer = timer
 
+	--TODO make sure first draw happens before the 1 sec sleep
+
 	timer:start(
 		0,
 		1000,
