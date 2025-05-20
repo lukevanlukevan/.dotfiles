@@ -24,7 +24,6 @@ vim.api.nvim_create_user_command("PomodoriniShow", function()
 end, {})
 
 -- hotkeys
-vim.api.nvim_set_keymap("n", "<leader>tt", ":PomodoriniStart 25<cr>", { silent = true })
-vim.api.nvim_set_keymap("n", "<leader>ts", ":PomodoriniShow<cr>", { silent = true })
-vim.api.nvim_set_keymap("n", "<leader>th", ":PomodoriniStart 25<cr>", { silent = true })
-vim.api.nvim_set_keymap("n", "<leader>tt", ":PomodoriniStart 25<cr>", { silent = true })
+vim.api.nvim_set_keymap("n", "<leader>tt", ":PomodoriniStart 25<cr>", { silent = true, desc = "Start Pomodorini" })
+vim.api.nvim_set_keymap("n", "<leader>ts", ":PomodoriniShow<cr>", { silent = true, desc = "Show Pomodorini" })
+vim.api.nvim_set_keymap("n", "<leader>th", ":PomodoriniHide<cr>", { silent = true, desc = "Hide Pomodorini" })

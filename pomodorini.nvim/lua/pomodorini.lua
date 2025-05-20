@@ -4,7 +4,7 @@ M.setup = function()
 	-- User command to hide the window
 end
 
-WIDTH = 35
+WIDTH = 39
 
 local ns_id = vim.api.nvim_create_namespace("pomodorini")
 
@@ -55,7 +55,6 @@ M.pomodorini_create = function()
 	local win_id = vim.api.nvim_open_win(bufnr, false, win_opts)
 	state.win_id = win_id
 	state.hidden = false
-	print(state.win_id)
 end
 
 local function start_timer_for(duration, on_done)
@@ -108,9 +107,11 @@ local function start_timer_for(duration, on_done)
 			local bar = render_progress_bar(progress, 20)
 
 			local secondsleft = total_ticks - current_tick
+			local minutesleft = math.floor(secondsleft / 60)
+			local modsecs = math.fmod(secondsleft, 60)
 			local lines = {
 				" ",
-				bar .. string.format(" %ds left", total_ticks - current_tick),
+				bar .. string.format(" %dm %ds left", minutesleft, modsecs),
 			}
 			state.lines = lines
 			vim.bo[bufnr].modifiable = true
