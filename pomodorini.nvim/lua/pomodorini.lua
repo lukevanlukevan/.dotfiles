@@ -15,6 +15,7 @@ local state = {
 	bufnr = nil,
 	lines = {},
 	hidden = false,
+	paused = false,
 }
 
 local function render_progress_bar(progress, length)
@@ -163,6 +164,16 @@ M.start_timer = function(duration, on_done)
 	end, { buffer = bufnr, nowait = true, silent = true, noremap = true })
 
 	start_timer_for(duration, start_timer_for(5))
+end
+
+M.pomodorini_pause_toggle = function()
+	if state.timer then
+		if not state.paused then
+			state.timer:stop()
+		else
+			state.timer.start()
+		end
+	end
 end
 
 M.pomodorini_hide = function()
