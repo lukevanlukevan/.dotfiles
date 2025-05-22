@@ -124,23 +124,31 @@ local function start_timer_for(duration_minutes, on_done, start_tick)
 				bar .. string.format(" %dm %ds left", minutesleft, modsecs),
 			}
 
+			state.lines = lines
+			vim.bo[state.bufnr].modifiable = true
+			vim.api.nvim_buf_set_lines(state.bufnr, 0, -1, false, lines)
+
 			-- Define a custom highlight group for red text
-			vim.cmd("highlight timerBar ctermfg=red guibg=#FF0000")
+			vim.cmd("highlight timerBar guifg=#ff2b24")
+			local target_line_idx = 1 -- Line 1 (0-indexed)
+			-- local line_content = vim.api.nvim_buf_get_lines(state.bufnr, target_line_idx, target_line_idx + 1, false)[1]
+			-- vim.print(line_content)
+			-- local line_length = #line_content
+			local line_length = 10
+			local desired_end_col = 6
+			local safe_end_col = math.min(desired_end_col, line_length)
 			vim.api.nvim_buf_set_extmark(
 				state.bufnr, -- 0 refers to the current buffer
 				ns_id,
-				1, -- Line 1 (0-indexed)
-				0, -- Column 0 (0-indexed)
+				target_line_idx, -- Line 1 (0-indexed)
+				1, -- Column 0 (0-indexed)
 				{
-					end_row = 1, -- Same line as start_line
-					end_col = 6, -- Highlights characters at index 0, 1, 2, 3, 4, 5 (exclusive end)
+					end_row = target_line_idx, -- Same line as start_line
+					end_col = 60, -- Highlights characters at index 0, 1, 2, 3, 4, 5 (exclusive end)
 					hl_group = "timerBar", -- Or any other highlight group like "Visual", "Search", "Todo"
 				}
 			)
 
-			state.lines = lines
-			vim.bo[state.bufnr].modifiable = true
-			vim.api.nvim_buf_set_lines(state.bufnr, 0, -1, false, lines)
 			vim.bo[state.bufnr].modifiable = false
 
 			-- ONLY increment current_tick if the timer is NOT paused
@@ -160,12 +168,12 @@ M.start_timer = function(duration, on_done)
 	local bufnr = state.bufnr
 	local win_id = state.win_id
 
-	vim.api.nvim_buf_set_option(bufnr, "bufhidden", "hide")
+	vim.api.nvim_buf_set_option(state.bufnr, "bufhidden", "hide")
 
 	-- Keymaps: close with 'c'
 	vim.keymap.set("n", "c", function()
-		if vim.api.nvim_win_is_valid(win_id) then
-			vim.api.nvim_win_close(win_id, true)
+		if vim.api.nvim_win_is_valid(state.win_id) then
+			vim.api.nvim_win_close(state.win_id, true)
 		end
 		if state.timer then
 			state.timer:stop()
