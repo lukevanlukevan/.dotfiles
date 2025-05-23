@@ -1,7 +1,5 @@
 local bufnr = vim.api.nvim_get_current_buf()
 
-foo = "bar"
-
 local ns_id = vim.api.nvim_create_namespace("pomodorini")
 vim.cmd("highlight timerBar guibg=#FF0000")
 local target_line_idx = 0 -- Line 1 (0-indexed)
