@@ -12,6 +12,7 @@ vim.keymap.set("n", "<Up>", ':echoe "Use k"<CR>', { noremap = true, silent = tru
 vim.keymap.set("n", "<Down>", ':echoe "Use j"<CR>', { noremap = true, silent = true })
 
 vim.api.nvim_set_keymap("n", "<leader>ii", ":lua Snacks.image.hover()<cr>", { silent = true })
+vim.api.nvim_set_keymap("n", "<leader>ip", ":lua Snacks.picker.pickers()<cr>", { silent = true })
 
 -------------------------------------------------------------------------------
 --                           Folding section
