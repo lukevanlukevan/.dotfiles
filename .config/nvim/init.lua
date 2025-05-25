@@ -1,6 +1,4 @@
 -- bootstrap lazy.nvim, LazyVim and your plugins
-
--- bootstrap lazy.nvim, LazyVim and your plugins
 require("config.lazy")
 
 -- Platform-specific shell configuration using vim.fn.has
@@ -16,3 +14,6 @@ end
 -- Shared settings
 vim.opt.wrap = true
 vim.opt.autoindent = true
+
+vim.lsp.enable("lua_ls")
+vim.lsp.enable("pyright")
