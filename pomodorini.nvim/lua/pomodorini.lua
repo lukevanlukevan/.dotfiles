@@ -1,7 +1,18 @@
 local M = {}
 
-M.setup = function()
-	-- User command to hide the window
+local defaults = {
+	status_line = { "[r]estart [b]reak [c]lose" },
+	-- highlight_color = "ff2b24",
+	highlight_color = "00FF00",
+	timer_dur = 25,
+	break_dur = 5,
+}
+
+local config = defaults
+
+M.setup = function(opts)
+	config = vim.tbl_deep_extend("force", defaults, opts or {})
+	print(config)
 end
 
 WIDTH = 39
@@ -16,6 +27,7 @@ local state = {
 	lines = {},
 	hidden = false,
 	paused = false,
+	status_line = "",
 	current_tick = nil,
 	total_ticks = nil,
 	paused_at_tick = 0, -- New: Stores the tick count when the timer was paused
@@ -89,7 +101,7 @@ local function start_timer_for(duration_minutes, on_done, start_tick)
 				state.timer = nil
 
 				local done_lines = {
-					" [r]estart [b]reak [c]lose",
+					state.status_line,
 					" Timer complete.",
 				}
 				state.lines = done_lines
@@ -118,9 +130,11 @@ local function start_timer_for(duration_minutes, on_done, start_tick)
 			local minutesleft = math.floor(secondsleft / 60)
 			local modsecs = math.fmod(secondsleft, 60)
 
+			state.status_line = config.status_line[math.random(#config.status_line)]
+
 			-- Format the lines to display in the window
 			local lines = {
-				" [r]estart [b]reak [c]lose",
+				state.status_line,
 				bar .. string.format(" %dm %ds left", minutesleft, modsecs),
 			}
 
@@ -129,7 +143,7 @@ local function start_timer_for(duration_minutes, on_done, start_tick)
 			vim.api.nvim_buf_set_lines(state.bufnr, 0, -1, false, lines)
 
 			-- Define a custom highlight group for red text
-			vim.cmd("highlight timerBar guifg=#ff2b24")
+			vim.cmd("highlight timerBar guifg=#" .. config.highlight_color)
 			local target_line_idx = 1 -- Line 1 (0-indexed)
 			-- local line_content = vim.api.nvim_buf_get_lines(state.bufnr, target_line_idx, target_line_idx + 1, false)[1]
 			-- vim.print(line_content)
@@ -191,7 +205,7 @@ M.start_timer = function(duration, on_done)
 
 	-- Keymap: restart with 'r' (starts a 25-min timer, then a 1-min break)
 	vim.keymap.set("n", "r", function()
-		start_timer_for(25, function()
+		start_timer_for(config.timer_dur, function()
 			start_timer_for(1)
 		end)
 	end, { buffer = bufnr, nowait = true, silent = true, noremap = true })
@@ -223,6 +237,10 @@ M.pomodorini_pause_toggle = function()
 		state.paused_at_tick = state.current_tick -- Store the current tick when pausing
 		state.paused = true
 	end
+end
+
+M.is_paused = function()
+	return state.paused
 end
 
 M.pomodorini_hide = function()
@@ -268,7 +286,7 @@ M.pomodorini_show = function()
 		vim.keymap.set("n", "h", function()
 			vim.cmd("PomodoriniHide")
 		end, { buffer = state.bufnr, nowait = true, silent = true })
-
+		state.status_line = config.status_line[math.random(#state.status_line)]
 		-- Re-render last known lines to update the display
 		if state.lines then
 			vim.bo[state.bufnr].modifiable = true
@@ -276,6 +294,10 @@ M.pomodorini_show = function()
 			vim.bo[state.bufnr].modifiable = false
 		end
 	end
+end
+
+M.get_config = function()
+	return config
 end
 
 return M
