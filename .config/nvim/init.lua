@@ -15,8 +15,6 @@ end
 vim.opt.wrap = true
 vim.opt.autoindent = true
 
--- vim.lsp.enable("lua_ls")
+vim.lsp.enable("lua_ls")
 -- vim.lsp.enable("pyright")
-require("mason-lspconfig").setup({
-  automatic_enable = true,
-})
+require("config.markdownhelpers")
