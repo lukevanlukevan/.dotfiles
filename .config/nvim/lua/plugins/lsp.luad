@@ -1,0 +1,76 @@
+return {
+  "neovim/nvim-lspconfig",
+  config = function()
+    local lspconfig = require("lspconfig")
+    lspconfig.pyright.setup({
+      settings = {
+        python = {
+          pythonPath = "C:/Program Files/Side Effects Software/Houdini 20.5.332/python311/python.exe",
+          analysis = {
+            extraPaths = {
+              "C:\\Program Files\\Side Effects Software\\Houdini 20.5.332\\houdini\\python3.11libs",
+            },
+            -- extraPaths = {
+            --   "C:/Program Files/Side Effects Software/Houdini 20.5.332/python311/lib/site-packages-forced",
+            --   "C:/Program Files/Side Effects Software/Houdini 20.5.332/python311/lib/site-packages-forced",
+            --   "C:/Program Files/Side Effects Software/Houdini 20.5.332/python311/lib/site-packages-ui-forced",
+            --   "C:/Program Files/Side Effects Software/Houdini 20.5.332/python311/lib/site-packages-forced",
+            --   "C:/Program Files/Side Effects Software/Houdini 20.5.332/bin",
+            --   "C:/Program Files/Side Effects Software/Houdini 20.5.332/bin/python311.zip",
+            --   "C:/Program Files/Side Effects Software/Houdini 20.5.332/python311/dlls",
+            --   "C:/Program Files/Side Effects Software/Houdini 20.5.332/python311/lib",
+            --   "C:/Program Files/Side Effects Software/Houdini 20.5.332/bin",
+            --   "C:/Program Files/Side Effects Software/Houdini 20.5.332/python311",
+            --   "C:/Program Files/Side Effects Software/Houdini 20.5.332/python311/lib/site-packages",
+            --   "C:/Program Files/Side Effects Software/Houdini 20.5.332/packages/sculpt/python3.11libs",
+            --   "C:/Program Files/Side Effects Software/Houdini 20.5.332/packages/kinefx/python3.11libs",
+            --   "C:/Program Files/Side Effects Software/Houdini 20.5.332/packages/apex/python3.11libs",
+            --   "//192.168.68.102/Public/05-RESOURCES/21_HoudiniPackages/ramp-unzel/python3.11libs",
+            --   "//192.168.68.102/Public/05-RESOURCES/21_HoudiniPackages/hou-spot/python3.11libs",
+            --   "D:/Assets/Houdini Packages/ODHoudiniShelfTools2021/python3.11libs",
+            --   "C:/Users/PIC-TWO/Documents/houdini20.5/python3.11libs",
+            --   "C:/Program Files/Side Effects Software/Houdini 20.5.332/houdini/python3.11libs",
+            --   "C:/Program Files/Side Effects Software/sidefx_packages/SideFXLabs20.5/scripts/python",
+            --   "D:/Assets/Houdini Packages/qLib/scripts/python",
+            --   "D:/Code/pipeline-controller/scripts/python",
+            --   "D:/Assets/Houdini Packages/houdini2godot/scripts/python",
+            --   "//192.168.68.102/Public/05-RESOURCES/21_HoudiniPackages/hou-plotting/scripts/python",
+            --   "D:/Dropbox (Personal)/TDP_test/scripts/python",
+            --   "//192.168.68.102/Public/05-RESOURCES/21_HoudiniPackages/PIC/scripts/python",
+            --   "//192.168.68.102/Public/05-RESOURCES/21_HoudiniPackages/polyhaven-browser/scripts/python",
+            --   "//192.168.68.102/Public/05-RESOURCES/21_HoudiniPackages/plasticity_bridge/scripts/python",
+            --   "D:/Assets/Megascans Library/support/plugins/houdini/4.4/MSLiveLink/scripts/python",
+            --   "C:/Users/PIC-TWO/Documents/MOPS-1.3/scripts/python",
+            --   "D:/Assets/Houdini Packages/VFX-LYNX/plugins/SideFX/Houdini/scripts/python",
+            --   "C:/Users/PIC-TWO/Partners in Crime Dropbox/Luke Van/STUDIO-PIC/05-RESOURCES/05_Houdini Packages/LV Tools/scripts/python",
+            --   "C:/Users/PIC-TWO/Partners in Crime Dropbox/Luke Van/STUDIO-PIC/05-RESOURCES/05_Houdini Packages/LV Project Manager/scripts/python",
+            --   "D:/Assets/Houdini Packages/HoudiniIconBrowser-main/scripts/python",
+            --   "D:/Code/houdini-macropad/hou-macropad/scripts/python",
+            --   "D:/Assets/Houdini Packages/GreyscalegorillaHoudiniImporter/scripts/python",
+            --   "C:/Users/PIC-TWO/Documents/houdini20.5/scripts/python",
+            --   "C:/Program Files/Side Effects Software/Houdini 20.5.332/packages/kinefx/viewer_states",
+            --   "C:/Program Files/Side Effects Software/Houdini 20.5.332/packages/apex/viewer_states",
+            --   "D:/Assets/Houdini Packages/ODHoudiniShelfTools2021/viewer_states",
+            --   "C:/Program Files/Side Effects Software/Houdini 20.5.332/houdini/viewer_states",
+            --   "C:/Program Files/Side Effects Software/Houdini 20.5.332/packages/kinefx/viewer_handles",
+            --   "C:/Program Files/Side Effects Software/Houdini 20.5.332/houdini/viewer_handles",
+            --   "C:/Program Files/Side Effects Software/Houdini 20.5.332/python311/lib/site-packages",
+            --   "C:/Program Files/Side Effects Software/Houdini 20.5.332/houdini/python3.11libs",
+            --   "C:/Program Files/Side Effects Software/Houdini 20.5.332/python311/lib/site-packages",
+            --   "C:/Program Files/Side Effects Software/Houdini 20.5.332/houdini/python3.11libs",
+            --   "C:/Program Files/Side Effects Software/Houdini 20.5.332/python311/lib/site-packages",
+            --   "C:/Program Files/Side Effects Software/sidefx_packages/SideFXLabs20.5/viewer_states",
+            --   "D:/Assets/Houdini Packages/qLib/viewer_states",
+            -- },
+            autoSearchPaths = true,
+            useLibraryCodeForTypes = true,
+          },
+        },
+      },
+    })
+  end,
+}
+-- {
+--     "python.defaultInterpreterPath": "C:/Program Files/Side Effects Software/Houdini 20.5.332/python311/python.exe",
+--     "pyth    "python.analysis.stubPath": "D:/REPLACE/WITH/YOUR/STUB/PATH"
+-- }
