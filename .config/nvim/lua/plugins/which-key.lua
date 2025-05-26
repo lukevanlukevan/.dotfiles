@@ -1,9 +1,9 @@
 return {
   "folke/which-key.nvim",
   opts = {
-    spec = {
-      { "<leader>t", icon = "🍅", group = "Pomodorini" },
-    },
+    -- spec = {
+    --   { "<leader>t", icon = "🍅", group = "Pomodorini" },
+    -- },
     -- Set helix preset layout
     preset = "helix",
     -- Customize the window appearance

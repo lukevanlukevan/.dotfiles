@@ -1,5 +1,13 @@
 return {
   "lukevanlukevan/pomodorini.nvim",
+  dependencies = {
+    "folke/which-key.nvim",
+    opts = {
+      spec = {
+        { "<leader>t", icon = "🍅", group = "Pomodorini" },
+      },
+    },
+  },
   opts = {
     status_line = { "[r]estart [b]reak [c]lose" },
     use_highlight = false,
