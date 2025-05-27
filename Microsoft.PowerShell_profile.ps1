@@ -45,3 +45,11 @@ function notes {
     nvim
 }
 
+function zvim {
+  param(
+    [Parameter]
+    [string]$dir
+  )
+  z $dir
+  nvim
+  }
