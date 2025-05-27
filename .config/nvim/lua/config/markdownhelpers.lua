@@ -12,11 +12,16 @@ local get_todo_state = function()
   elseif starter == "- [x]" then
     filler = " "
   end
+  return filler, outer
+end
+
+local toggle_todo = function()
+  local filler, outer = get_todo_state()
   if filler ~= "none" then
     vim.api.nvim_set_current_line("- [" .. filler .. "]" .. outer)
   end
 end
 
 vim.keymap.set("n", "<M-x>", function()
-  get_todo_state()
+  toggle_todo()
 end, { silent = true })

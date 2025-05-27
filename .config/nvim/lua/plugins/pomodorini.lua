@@ -16,7 +16,7 @@ return {
     break_dur = 5,
     use_snacks = false,
     keymaps = {
-      start = "<leader>tq",
+      start = "<leader>tt",
       show = "<leader>ts",
       hide = "<leader>th",
       pause_toggle = "<leader>tp",
