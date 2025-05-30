@@ -99,6 +99,14 @@ return {
               },
             },
           },
+          pyright = {
+            -- pythonPath = "C:/Program Files/Side Effects Software/Houdini 20.5.332/python311/python.exe",
+            analysis = {
+              extraPaths = {
+                "C:\\Program Files\\Side Effects Software\\Houdini 20.5.332\\houdini\\python3.11libs",
+              },
+            },
+          },
         },
         -- you can do any additional lsp server setup here
         -- return true if you don't want this server to be setup with lspconfig
