@@ -23,5 +23,6 @@ vim.api.nvim_set_hl(0, "Pmenu", { bg = "none" })
 -- end transparent background
 
 vim.lsp.enable("lua_ls")
--- vim.lsp.enable("pyright")
+vim.lsp.enable("marksman")
+vim.lsp.enable("pyright")
 require("config.markdownhelpers")
