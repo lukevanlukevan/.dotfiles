@@ -40,6 +40,10 @@ if [ -f "/Users/lukevan/miniforge3/etc/profile.d/mamba.sh" ]; then
 fi
 # <<< conda initialize <<<
 
+# env variables
+
+export TODOS="~/Dropbox (Personal)/todos/"
+
 # aliases
 zvim() {
   z $1
