@@ -3,6 +3,10 @@ return {
   opts = {
     anti_conceal = {
       enabled = false,
+      disabled_modes = "n",
+      ignore = {
+        dash = false,
+      },
     },
     heading = {
       enabled = true,
