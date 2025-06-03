@@ -1,13 +1,13 @@
 return {
   "MeanderingProgrammer/render-markdown.nvim",
   opts = {
-    anti_conceal = {
-      enabled = false,
-      disabled_modes = "n",
-      ignore = {
-        dash = false,
-      },
-    },
+    -- anti_conceal = {
+    --   enabled = false,
+    --   disabled_modes = "n",
+    --   ignore = {
+    --     dash = false,
+    --   },
+    -- },
     heading = {
       enabled = true,
       render_modes = false,
