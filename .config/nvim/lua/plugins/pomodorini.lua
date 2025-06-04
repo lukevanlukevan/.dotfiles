@@ -1,5 +1,6 @@
 return {
   "lukevanlukevan/pomodorini.nvim",
+  dir = "~/Code/pomodorini.nvim/",
   dependencies = {
     "folke/which-key.nvim",
     opts = {
