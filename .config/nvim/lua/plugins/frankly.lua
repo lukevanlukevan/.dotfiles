@@ -1,7 +1,7 @@
 local non_win = vim.fn.has("macunix")
 if non_win then
-  PLUGIN_DIR = "~/Code/frankly.nvim"
-  TODO_DIR = "~/todo"
+  PLUGIN_DIR = "D:/Code/frankly.nvim"
+  TODO_DIR = "C:/Users/PIC-TWO/Documents/todo"
 else
   PLUGIN_DIR = "~/Code/frankly.nvim"
   TODO_DIR = "~/todo"

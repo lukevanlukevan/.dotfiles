@@ -1,6 +1,12 @@
+local non_win = vim.fn.has("macunix")
+if non_win then
+  PLUGIN_DIR = "D:/Code/pomodorini.nvim"
+else
+  PLUGIN_DIR = "~/Code/pomodorini.nvim"
+end
 return {
   "lukevanlukevan/pomodorini.nvim",
-  dir = "~/Code/pomodorini.nvim/",
+  dir = PLUGIN_DIR,
   dependencies = {
     "folke/which-key.nvim",
     opts = {
