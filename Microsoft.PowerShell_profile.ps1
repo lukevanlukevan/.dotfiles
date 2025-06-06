@@ -31,7 +31,7 @@ function makevideo($inputFile, $outputFile, $framerate = 25, $start = 1) {
   python d:\Code\lv-helpers\image2sequence.py $inputFile --framerate $framerate --start $start
 }
 
-function makevideo($inputFile, $outputFile, $framerate = 25, $start = 1) {
+function makewebp($inputFile, $outputFile, $framerate = 25, $start = 1) {
   # Assuming you save the Python script at C:\Scripts\image_processor.py
   ffmpeg -i "$inputFile"-loop 1 -an -vf fps=fps=25 "$outputFile"
 }
