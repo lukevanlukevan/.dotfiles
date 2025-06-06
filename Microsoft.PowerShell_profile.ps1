@@ -14,9 +14,26 @@ if (Test-Path($ChocolateyProfile)) {
 #   ffmpeg -framerate $framerate  -start_number $start -i $inputFile -c:v libx264 -pix_fmt yuv420p $outputFile
 # }
 
+# YAZI START
+function y {
+    $tmp = [System.IO.Path]::GetTempFileName()
+    yazi $args --cwd-file="$tmp"
+    $cwd = Get-Content -Path $tmp -Encoding UTF8
+    if (-not [String]::IsNullOrEmpty($cwd) -and $cwd -ne $PWD.Path) {
+        Set-Location -LiteralPath ([System.IO.Path]::GetFullPath($cwd))
+    }
+    Remove-Item -Path $tmp
+}
+# YAZI END
+
 function makevideo($inputFile, $outputFile, $framerate = 25, $start = 1) {
-    # Assuming you save the Python script at C:\Scripts\image_processor.py
-    python d:\Code\lv-helpers\image2sequence.py $inputFile --framerate $framerate --start $start
+  # Assuming you save the Python script at C:\Scripts\image_processor.py
+  python d:\Code\lv-helpers\image2sequence.py $inputFile --framerate $framerate --start $start
+}
+
+function makevideo($inputFile, $outputFile, $framerate = 25, $start = 1) {
+  # Assuming you save the Python script at C:\Scripts\image_processor.py
+  ffmpeg -i "$inputFile"-loop 1 -an -vf fps=fps=25 "$outputFile"
 }
 
 function joinvideos {
