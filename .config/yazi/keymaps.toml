@@ -1,4 +1,0 @@
-[mgr]
-append_keymap = [
-	{ on = [ "o" ], run = "nvim", desc = "Open in nvim" },
-]
