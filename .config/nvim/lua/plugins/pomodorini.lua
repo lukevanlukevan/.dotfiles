@@ -1,8 +1,8 @@
 local non_win = vim.fn.has("macunix")
 if non_win then
-  PLUGIN_DIR = "D:/Code/pomodorini.nvim"
-else
   PLUGIN_DIR = "~/Code/pomodorini.nvim"
+else
+  PLUGIN_DIR = "D:/Code/pomodorini.nvim"
 end
 return {
   "lukevanlukevan/pomodorini.nvim",
@@ -16,9 +16,9 @@ return {
     },
   },
   opts = {
-    status_line = { "[r]estart [b]reak [c]lose" },
-    use_highlight = false,
-    highlight_color = "00FF00",
+    status_line = { "Make sure to focus!" },
+    use_highlight = true,
+    highlight_color = "FF0000",
     timer_dur = 25,
     break_dur = 5,
     use_snacks = false,
