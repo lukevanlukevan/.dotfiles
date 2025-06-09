@@ -1,5 +1,5 @@
 local non_win = vim.fn.has("macunix")
-if non_win then
+if non_win == 1 then
   PLUGIN_DIR = "~/Code/pomodorini.nvim"
 else
   PLUGIN_DIR = "D:/Code/pomodorini.nvim"
