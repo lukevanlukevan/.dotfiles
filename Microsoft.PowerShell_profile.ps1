@@ -63,10 +63,16 @@ function notes {
 }
 
 function zvim {
-  param(
-    [Parameter]
-    [string]$dir
-  )
-  z $dir
-  nvim
-  }
+    param(
+      [Parameter(Mandatory=$true)]
+      [string]$dir
+    )
+    if ($dir) {
+        z $dir
+    }
+    nvim
+}
+
+function q {
+    exit
+}
