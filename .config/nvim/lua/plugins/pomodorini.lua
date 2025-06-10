@@ -16,12 +16,15 @@ return {
     },
   },
   opts = {
-    status_line = { "Make sure to focus!" },
+    status_line = { "[r]estart [b]reak [q]uit", "Time to focus" },
     use_highlight = true,
     highlight_color = "FF0000",
     timer_dur = 25,
     break_dur = 5,
-    use_snacks = false,
+    use_snacks = true,
+    align = "tr",
+    v_margin = 1,
+    h_margin = 1,
     keymaps = {
       start = "<leader>tt",
       show = "<leader>ts",

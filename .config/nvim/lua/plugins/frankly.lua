@@ -11,7 +11,7 @@ return {
   dir = PLUGIN_DIR, -- dir = "D:/Code/frankly.nvim",
   opts = {
     target_dir = "$TODOS",
-    border = "rounded", -- single, rounded, etc.
+    border = "single", -- single, rounded, etc.
     width = 85, -- width in columns
     height = 45, -- height in lines
   },
