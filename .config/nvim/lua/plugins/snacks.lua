@@ -31,6 +31,21 @@ return {
     image = {
       enabled = true,
     },
+    terminal = {
+      win = {
+
+        style = {
+          position = "float",
+          border = "rounded",
+          title = " Termninal ",
+          title_pos = "center",
+          backdrop = 60,
+          height = 0.6,
+          width = 0.8,
+          zindex = 50,
+        },
+      },
+    },
   },
   keys = {
     {
