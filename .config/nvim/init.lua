@@ -26,4 +26,6 @@ vim.lsp.enable("lua_ls")
 vim.lsp.enable("marksman")
 vim.lsp.enable("pyright")
 vim.lsp.enable("prettier")
+vim.lsp.enable("gdscript")
+
 require("config.markdownhelpers")
