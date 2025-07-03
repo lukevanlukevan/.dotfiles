@@ -60,3 +60,7 @@ function yy() {
 	fi
 	rm -f -- "$tmp"
 }
+
+function yrs(){
+  yabai --restart-service
+}

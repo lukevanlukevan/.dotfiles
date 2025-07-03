@@ -1,0 +1,16 @@
+yabai -m config layout bsp
+# Set all padding and gaps to 20pt (default: 0)
+yabai -m config top_padding    10
+yabai -m config bottom_padding 10
+yabai -m config left_padding   10
+yabai -m config right_padding  10
+yabai -m config window_gap     10
+
+yabai -m config window_placement first_child
+
+# Override gaps for space 2 only
+# yabai -m config --space 2 window_gap 0
+
+yabai -m config mouse_follows_focus on
+yabai -m config mouse_drop_action on
+

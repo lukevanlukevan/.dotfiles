@@ -1,0 +1,43 @@
+# focus window
+
+alt - j: yabai -m window --focus south
+alt - k: yabai -m window --focus north
+alt - h: yabai -m window --focus west
+alt - l: yabai -m window --focus east
+
+# pop out window
+
+# rotate layout CW
+shift + alt - r: yabai -m space --rotate 270
+fn - r: yabai -m space --rotate 270
+
+# flip on y
+shift + alt - y: yabai -m space --mirror y-axis
+fn - y: yabai -m space --mirror y-axis
+
+# flip on x
+shift + alt - x: yabai -m space --mirror x-axis
+fn - x: yabai -m space --mirror x-axis
+
+# toggle window float
+shift + alt - f: yabai -m window --toggle float --grid 4:4:1:1:2:2
+fn - f: yabai -m window --toggle float --grid 6:6:1:0:4:6
+
+# Modify window size
+
+# fullscreen
+shift + alt - m: yabai -m window --toggle zoom-fullscreen
+fn - m: yabai -m window --toggle zoom-fullscreen
+
+# reset balance
+shift + alt - e: yabai -m space --balance
+fn - e: yabai -m space --balance
+
+## CUSTOM ZONES
+
+# Resize focused split to 35/65
+shift + alt - b : yabai -m space --balance && yabai -m window --ratio 0.65
+
+# change size
+shift + alt - left:  yabai -m window --resize right:-100:0
+shift + alt - right:  yabai -m window --resize right:100:0
