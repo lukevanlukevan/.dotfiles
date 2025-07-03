@@ -41,3 +41,6 @@ shift + alt - b : yabai -m space --balance && yabai -m window --ratio 0.65
 # change size
 shift + alt - left:  yabai -m window --resize right:-100:0
 shift + alt - right:  yabai -m window --resize right:100:0
+
+# hide
+fn - h : ~/.dotfiles/yabai/scripts/toggle-window-hide.sh
