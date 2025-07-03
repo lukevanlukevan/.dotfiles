@@ -73,6 +73,11 @@ function zvim {
     nvim
 }
 
+function vim(){
+  $env:NVIM_APPNAME = "nvim-clean"
+  nvim $args
+}
+
 function q {
     exit
 }
