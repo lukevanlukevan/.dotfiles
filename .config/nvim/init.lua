@@ -29,3 +29,23 @@ vim.lsp.enable("prettier")
 vim.lsp.enable("gdscript")
 
 require("config.markdownhelpers")
+
+-- THIS IS JUST GODOT STUFF
+-- Start Neovim TCP server if inside a Godot project
+-- local uv = vim.uv or vim.loop
+-- local cwd = vim.fn.getcwd()
+-- local project_root = nil
+--
+-- -- Find project.godot in current or parent directory
+-- if uv.fs_stat(cwd .. "/project.godot") then
+--   project_root = cwd
+-- elseif uv.fs_stat(cwd .. "/../project.godot") then
+--   project_root = cwd .. "/../"
+-- end
+--
+-- -- Start TCP server
+-- if project_root then
+--   vim.fn.serverstart("127.0.0.1:6666")
+--   print("Started Godot server on 127.0.0.1:6666")
+-- end
+-- END GODOT STUFF

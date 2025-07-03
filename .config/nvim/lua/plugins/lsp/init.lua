@@ -68,6 +68,12 @@ return {
         -- LSP Server Settings
         ---@type lspconfig.options
         servers = {
+          gdscript = {
+            mason = false, -- we don't use mason for godot's language server
+            cmd = { "ncat", "127.0.0.1", "6005" },
+            filetypes = { "gd", "gdscript" },
+            root_dir = require("lspconfig.util").root_pattern("project.godot", ".git"),
+          },
           lua_ls = {
             settings = {
               Lua = {
