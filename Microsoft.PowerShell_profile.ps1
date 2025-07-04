@@ -81,3 +81,11 @@ function vim(){
 function q {
     exit
 }
+
+function lvclone {
+    param(
+      [Parameter(Mandatory=$true)]
+      [string]$repo
+    )
+    git clone https://github.com/lukevanlukevan/$repo.git
+  }
