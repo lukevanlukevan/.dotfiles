@@ -23,6 +23,9 @@ fn - x: yabai -m space --mirror x-axis
 shift + alt - f: yabai -m window --toggle float --grid 4:4:1:1:2:2
 fn - f: yabai -m window --toggle float --grid 6:6:1:0:4:6
 
+# toggle window float - BIG
+fn - t: yabai -m window --toggle float --grid 6:6:0:0:6:6
+#
 # Modify window size
 
 # fullscreen
@@ -37,10 +40,19 @@ fn - e: yabai -m space --balance
 
 # Resize focused split to 35/65
 shift + alt - b : yabai -m space --balance && yabai -m window --ratio 0.65
+fn - b : yabai -m space --balance && yabai -m window --ratio 0.65
 
 # change size
 shift + alt - left:  yabai -m window --resize right:-100:0
 shift + alt - right:  yabai -m window --resize right:100:0
 
-# hide
-fn - h : ~/.dotfiles/yabai/scripts/toggle-window-hide.sh
+
+# unfloat windows
+fn - p: yabai -m window --toggle float
+
+# Tile hotkeys
+# <--
+cmd + alt + ctrl - j: yabai -m window --grid 2:5:0:0:2:2
+
+# -->
+cmd + alt + ctrl - l: yabai -m window --grid 2:5:2:0:6:2

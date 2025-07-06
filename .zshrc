@@ -64,3 +64,7 @@ function yy() {
 function yrs(){
   yabai --restart-service
 }
+
+function yabai-start(){
+  yabai --start-service && skhd --start-service
+}
