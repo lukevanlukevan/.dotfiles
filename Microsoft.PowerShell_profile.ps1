@@ -1,5 +1,12 @@
 oh-my-posh init pwsh --config 'C:\Users\PIC-TWO\AppData\Local\Programs\oh-my-posh\themes\takuya.omp.json' | Invoke-Expression
 Invoke-Expression (& { (zoxide init powershell | Out-String) })
+
+# Ivoke starship prompt
+
+# Invoke-Expression (&starship init powershell)
+
+# end starship
+
 # Import the Chocolatey Profile that contains the necessary code to enable
 # tab-completions to function for `choco`.
 # Be aware that if you are missing these lines from your profile, tab completion
