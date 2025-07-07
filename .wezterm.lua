@@ -59,71 +59,36 @@ config.hide_tab_bar_if_only_one_tab = true
 -- config.show_close_tab_button_in_tabs = false
 
 wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
-	-- Use the resolved palette's background color
 	local palette = config.resolved_palette
-	local background_color = palette and palette.background or "#1b1032"
-	local edge_background = background_color -- use theme background for edge
+	local is_active = tab.is_active
+	local tab_index = tab.tab_index
 
-	local background = background_color
-	local foreground = "#808080"
+	local bg_color = is_active and "#0000ff" or "#424242"
+	local fg_color = "#ffffff" -- white text for contrast
+	local white = "FFFFFF"
 
-	local tabcols = { "#FF6600", "#44DD00", "#0000FF" }
-
-	local active_bg = "#0033dd"
-	-- local inactive_bg =
-
-	-- if tab.is_active then
-	-- 	background = "#0033dd"
-	-- 	foreground = "#eeeeee"
-	-- elseif hover then
-	-- 	background = "#3b3052"
-	-- 	foreground = "#909090"
-	-- end
-
-	local colbackground = tabcols[math.fmod(tab.tab_index, #tabcols) + 1]
-
-	local CLOSE = wezterm.nerdfonts.ple_right_half_circle_thick
 	local OPEN = wezterm.nerdfonts.ple_left_half_circle_thick
-	-- local edge_foreground = background
+	local CLOSE = wezterm.nerdfonts.ple_right_half_circle_thick
+	local tab_number = tostring(tab_index + 1)
 
-	-- local title = "" .. tab.active_pane.title .. " | " .. tab.tab_index
-	local title = "" .. tab_title(tab) .. " "
-	local tip = "" .. (tab.tab_index + 1)
-
-	local edgebg = background_color
-	-- local bg = "#0033dd"
-	local bg = "#434366"
-	-- local bg = wezterm.color.from_hsla(240, 0.1, 0.3, 0)
-	local fg = "white"
-
-	if tab.is_active then
-		bg = "#5f69a0"
-	end
+	local background_color = palette and palette.background or "#1b1032"
+	local edge_bg = background_color
+	local accent_color = "0000FF"
 
 	return {
-		{ Background = { Color = edgebg } },
-		{ Foreground = { Color = bg } },
-		-- { Text = " " .. OPEN },
-		{ Text = "" },
-		{ Background = { Color = edgebg } },
-		{ Foreground = { Color = colbackground } },
+		{ Background = { Color = edge_bg } },
+		{ Foreground = { Color = bg_color } },
 		{ Text = OPEN },
-		-- { Background = { Color = bg } },
-		-- { Foreground = { Color = fg } },
-		-- { Text = title },
-		-- { Background = { Color = bg } },
-		-- { Foreground = { Color = colbackground } },
-		-- { Text = OPEN },
-		{ Background = { Color = colbackground } },
-		{ Foreground = { Color = fg } },
-		{ Text = "" .. tip },
-		{ Background = { Color = edgebg } },
-		{ Foreground = { Color = colbackground } },
+		{ Background = { Color = bg_color } },
+		{ Foreground = { Color = white } },
+		{ Text = tab_number },
+		{ Background = { Color = edge_bg } },
+		{ Foreground = { Color = bg_color } },
 		{ Text = CLOSE },
 	}
 end)
 
--- My keyamps:
+-- My keymaps:
 config.debug_key_events = true
 config.leader = { key = "a", mods = "CTRL" }
 config.keys = {
@@ -153,6 +118,13 @@ config.keys = {
 		action = act.SpawnTab("DefaultDomain"),
 	},
 }
+for i = 1, 9 do
+	table.insert(config.keys, {
+		key = tostring(i),
+		mods = "LEADER",
+		action = act.ActivateTab(i - 1),
+	})
+end
 
 -- and finally, return the configuration to wezterm
 return config
