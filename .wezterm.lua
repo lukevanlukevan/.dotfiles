@@ -37,7 +37,7 @@ config.window_padding = {
 -- config.window_background_opacity = 0.8
 -- config.macos_window_background_blur = 30
 
--- end winow transparency
+-- end window transparency
 
 -- tab bars:
 local function tab_title(tab_info)

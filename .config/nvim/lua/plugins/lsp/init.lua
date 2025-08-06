@@ -68,10 +68,36 @@ return {
         -- LSP Server Settings
         ---@type lspconfig.options
         servers = {
+          emmet_ls = {
+            -- on_attach = on_attach,
+            -- capabilities = capabilities,
+            filetypes = {
+              "css",
+              "eruby",
+              "html",
+              "javascript",
+              "javascriptreact",
+              "less",
+              "sass",
+              "scss",
+              "svelte",
+              "pug",
+              "typescriptreact",
+              "vue",
+            },
+            init_options = {
+              html = {
+                options = {
+                  -- For possible options, see: https://github.com/emmetio/emmet/blob/master/src/config.ts#L79-L267
+                  ["bem.enabled"] = true,
+                },
+              },
+            },
+          },
           gdscript = {
             mason = false, -- we don't use mason for godot's language server
             cmd = { "ncat", "127.0.0.1", "6005" },
-            filetypes = { "gd", "gdscript" },
+            filetypes = { "gd", "gdscript", "gdshader" },
             root_dir = require("lspconfig.util").root_pattern("project.godot", ".git"),
           },
           lua_ls = {
