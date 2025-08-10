@@ -138,4 +138,4 @@ start_tmux_sessions() {
   done
 }
 
-alias tman="z tman && uv run main.py"
+alias tman="z && z tman && uv run main.py && z"
