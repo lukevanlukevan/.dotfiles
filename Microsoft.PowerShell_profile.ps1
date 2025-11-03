@@ -1,4 +1,4 @@
-oh-my-posh init pwsh --config 'C:\Users\PIC-TWO\AppData\Local\Programs\oh-my-posh\themes\takuya.omp.json' | Invoke-Expression
+oh-my-posh init pwsh --config 'takuya' | Invoke-Expression
 Invoke-Expression (& { (zoxide init powershell | Out-String) })
 
 # Ivoke starship prompt
@@ -17,9 +17,9 @@ if (Test-Path($ChocolateyProfile)) {
   Import-Module "$ChocolateyProfile"
 }
 
-# function makevideo($inputFile, $outputFile, $framerate = 25, $start = 1) {
-#   ffmpeg -framerate $framerate  -start_number $start -i $inputFile -c:v libx264 -pix_fmt yuv420p $outputFile
-# }
+function makevideo($inputFile, $outputFile, $framerate = 25, $start = 1) {
+  ffmpeg -framerate $framerate  -start_number $start -i $inputFile -c:v libx264 -pix_fmt yuv420p $outputFile
+}
 
 # YAZI START
 function y {
