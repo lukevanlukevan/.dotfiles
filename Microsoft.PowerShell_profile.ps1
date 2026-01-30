@@ -1,6 +1,3 @@
-oh-my-posh init pwsh --config 'takuya' | Invoke-Expression
-Invoke-Expression (& { (zoxide init powershell | Out-String) })
-
 # Ivoke starship prompt
 
 # Invoke-Expression (&starship init powershell)
@@ -96,3 +93,5 @@ function lvclone {
     )
     git clone https://github.com/lukevanlukevan/$repo.git
   }
+oh-my-posh init pwsh --config 'takuya' | Invoke-Expression
+Invoke-Expression (& { (zoxide init powershell | Out-String) })
