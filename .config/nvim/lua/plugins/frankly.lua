@@ -8,6 +8,7 @@ else
 end
 return {
   "frankly.nvim", -- Assuming this is the name of your plugin
+  -- lazy = true,
   dir = PLUGIN_DIR, -- dir = "D:/Code/frankly.nvim",
   opts = {
     target_dir = "$TODOS",
