@@ -14,13 +14,15 @@ if is_darwin() then
 else
 	config.font_size = 11.0
 	config.default_prog = { "powershell.exe", "-NoLogo" }
+	-- config.default_prog = { "powershell.exe" }
 end
 
 config.enable_kitty_graphics = true
 
 -- For example, changing the color scheme:
 
-config.color_scheme = "Tokyo Night Moon"
+-- config.color_scheme = "Tokyo Night Moon"
+config.color_scheme = "nord"
 
 -- window deco
 config.window_decorations = "NONE|RESIZE"
@@ -51,10 +53,10 @@ local function tab_title(tab_info)
 	return tab_info.active_pane.title
 end
 
-config.use_fancy_tab_bar = false
+-- config.use_fancy_tab_bar = false
 config.tab_max_width = 32
 config.show_tab_index_in_tab_bar = true
-config.show_new_tab_button_in_tab_bar = false
+-- config.show_new_tab_button_in_tab_bar = false
 config.hide_tab_bar_if_only_one_tab = true
 -- config.show_close_tab_button_in_tabs = false
 
