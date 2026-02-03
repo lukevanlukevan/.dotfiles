@@ -117,7 +117,6 @@ fi
 
 # added by luke
 eval "$(zoxide init bash)"
-eval "$(oh-my-posh --init --shell bash --config '/home/lukevan/Dropbox/takuya.omp.json')"
 # Define session names and associated commands
 start_tmux_sessions() {
   declare -A sessions=(
