@@ -21,10 +21,6 @@ return {
       sources = {
         files = {
           hidden = true,
-          -- ignored = true,
-          -- exclude = {
-          -- "**/.git/*",
-          --},
         },
       },
     },
@@ -37,7 +33,7 @@ return {
         style = {
           position = "float",
           border = "rounded",
-          title = " Termninal ",
+          title = " Terminal ",
           title_pos = "center",
           backdrop = 60,
           height = 0.6,

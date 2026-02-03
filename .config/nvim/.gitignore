@@ -5,4 +5,7 @@ debug
 .repro
 foo.*
 *.log
+*.swp
+*.swo
+*~
 data

@@ -1,16 +1,20 @@
 return {
   "saghen/blink.cmp",
-  -- enabled = false,
-  -- version = "1.*",
   dependencies = {
     { "L3MON4D3/LuaSnip", version = "v2.*" },
   },
   opts = {
-
     keymap = {
       preset = "super-tab",
     },
-    -- https://cmp.saghen.dev/configuration/keymap
+    cmdline = {
+      keymap = {
+        preset = "super-tab",
+        -- Override LazyVim's false values that break validation
+        ["<Right>"] = {},
+        ["<Left>"] = {},
+      },
+    },
     completion = {
       menu = {
         border = "rounded",
@@ -19,12 +23,6 @@ return {
         selection = { preselect = false, auto_insert = false },
       },
     },
-    -- normal
-    -- completion = {
-    --   list = {
-    --     selection = { preselect = false, auto_insert = false },
-    --   },
-    -- },
     sources = {
       default = { "lsp", "path", "snippets", "buffer" },
     },

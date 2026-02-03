@@ -15,18 +15,17 @@ return {
     build = ":UpdateRemotePlugins",
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
-      "nvim-telescope/telescope.nvim", -- optional
+      "nvim-telescope/telescope.nvim",
     },
     opts = {
-    	server = {
-		override = false,
-},
+      server = {
+        override = false,
+      },
     },
     config = function(_, opts)
       require("tailwind-tools").setup(opts)
-      local group = vim.api.nvim_create_augroup("TailwindSortPreSave", { clear = true })
       vim.api.nvim_create_autocmd("BufWritePre", {
-        group = group,
+        group = vim.api.nvim_create_augroup("TailwindSortPreSave", { clear = true }),
         pattern = { "*.jsx", "*.tsx", "*.html" },
         callback = function()
           vim.cmd("TailwindSort")
