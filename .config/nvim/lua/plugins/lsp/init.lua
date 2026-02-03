@@ -137,8 +137,9 @@ return {
       LazyVim.format.register(LazyVim.lsp.formatter())
 
       -- setup keymaps
-      LazyVim.lsp.on_attach(function(client, buffer)
-        require("lazyvim.plugins.lsp.keymaps").on_attach(client, buffer)
+      --LazyVim.lsp.on_attach(function(client, buffer)
+      Snacks.util.lsp.on(function(client, buffer)
+	require("lazyvim.plugins.lsp.keymaps").on_attach(client, buffer)
       end)
 
       LazyVim.lsp.setup()
@@ -313,6 +314,6 @@ return {
   },
 
   -- pin to v1 for now
-  { "mason-org/mason.nvim", version = "^1.0.0" },
-  { "mason-org/mason-lspconfig.nvim", version = "^1.0.0" },
+  --{ "mason-org/mason.nvim", version = "^1.0.0" },
+  --{ "mason-org/mason-lspconfig.nvim", version = "^1.0.0" },
 }
