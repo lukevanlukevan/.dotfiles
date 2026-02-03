@@ -138,3 +138,5 @@ start_tmux_sessions() {
 }
 
 alias tman="z && z tman && uv run main.py && z"
+alias ta="tmux attach -t"
+alias tn="tmux new -s"
