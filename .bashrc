@@ -143,7 +143,7 @@ alias tn="tmux new -s"
 
 # oh-my-bash configuration
 export OSH=~/.oh-my-bash
-OSH_THEME="font"
+OSH_THEME="powerline-icon"
 
 completions=(
   git
