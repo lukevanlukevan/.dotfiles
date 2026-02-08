@@ -116,7 +116,10 @@ if ! shopt -oq posix; then
 fi
 
 # added by luke
+export PATH="$HOME/.local/bin:$PATH"
 eval "$(zoxide init bash)"
+eval "$(oh-my-posh init bash --config 'takuya')"
+
 # Define session names and associated commands
 start_tmux_sessions() {
   declare -A sessions=(
@@ -158,4 +161,4 @@ plugins=(
   git
 )
 
-source "$OSH"/oh-my-bash.sh
+# source "$OSH"/oh-my-bash.sh
