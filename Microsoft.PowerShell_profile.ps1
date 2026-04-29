@@ -1,17 +1,12 @@
-# Ivoke starship prompt
-
-# Invoke-Expression (&starship init powershell)
-
-# end starship
-
-# Import the Chocolatey Profile that contains the necessary code to enable
-# tab-completions to function for `choco`.
-# Be aware that if you are missing these lines from your profile, tab completion
-# for `choco` will not function.
-# See https://ch0.co/tab-completion for details.
+# Chocolatey - lazy load on first use (avoids slow module import at startup)
 $ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
-if (Test-Path($ChocolateyProfile)) {
-  Import-Module "$ChocolateyProfile"
+if (Test-Path $ChocolateyProfile) {
+    $script:_chocoProfile = $ChocolateyProfile
+    function global:choco {
+        Remove-Item Function:\choco -Force -ErrorAction SilentlyContinue
+        Import-Module $script:_chocoProfile
+        & "$env:ChocolateyInstall\choco.exe" @args
+    }
 }
 
 function makevideo($inputFile, $outputFile, $framerate = 25, $start = 1) {
@@ -86,6 +81,8 @@ function q {
     exit
 }
 
+function sound { yt-dlp --extract-audio --audio-format mp3 @args }
+
 function lvclone {
     param(
       [Parameter(Mandatory=$true)]
@@ -93,5 +90,14 @@ function lvclone {
     )
     git clone https://github.com/lukevanlukevan/$repo.git
   }
-oh-my-posh init pwsh --config 'takuya' | Invoke-Expression
-Invoke-Expression (& { (zoxide init powershell | Out-String) })
+$ompCache = "$env:LOCALAPPDATA\omp-init-cache.ps1"
+if (-not (Test-Path $ompCache)) {
+    oh-my-posh init pwsh --config 'takuya' | Out-File $ompCache -Encoding UTF8
+}
+. $ompCache
+
+$zoxCache = "$env:LOCALAPPDATA\zoxide-init-cache.ps1"
+if (-not (Test-Path $zoxCache)) {
+    zoxide init powershell | Out-File $zoxCache -Encoding UTF8
+}
+. $zoxCache
