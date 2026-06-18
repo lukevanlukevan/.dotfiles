@@ -34,20 +34,22 @@ return {
           },
         },
         -- Pyright for Windows/Houdini
-        pyright = vim.fn.has("win32") == 1 and {
-          settings = {
-            python = {
-              pythonPath = "C:/Program Files/Side Effects Software/Houdini 20.5.332/python311/python.exe",
-              analysis = {
-                extraPaths = {
-                  "C:\\Program Files\\Side Effects Software\\Houdini 20.5.332\\houdini\\python3.11libs",
+        pyright = vim.fn.has("win32") == 1
+            and {
+              settings = {
+                python = {
+                  pythonPath = "C:/Program Files/Side Effects Software/Houdini 20.5.332/python311/python.exe",
+                  analysis = {
+                    extraPaths = {
+                      "C:\\Program Files\\Side Effects Software\\Houdini 20.5.332\\houdini\\python3.11libs",
+                    },
+                    autoSearchPaths = true,
+                    useLibraryCodeForTypes = true,
+                  },
                 },
-                autoSearchPaths = true,
-                useLibraryCodeForTypes = true,
               },
-            },
-          },
-        } or {},
+            }
+          or {},
       },
     },
     config = function(_, opts)
