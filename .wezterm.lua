@@ -33,14 +33,6 @@ config.window_padding = {
 	right = 10.0,
 }
 
--- window transparency
-
--- mac
--- config.window_background_opacity = 0.8
--- config.macos_window_background_blur = 30
-
--- end winow transparency
-
 -- tab bars:
 local function tab_title(tab_info)
 	local title = tab_info.tab_title
@@ -119,7 +111,42 @@ config.keys = {
 		mods = "LEADER",
 		action = act.SpawnTab("DefaultDomain"),
 	},
+	-- Leader + n → next tab (wraps around)
+	{
+		key = "n",
+		mods = "LEADER",
+		action = wezterm.action_callback(function(win, pane)
+			local tab_bar = win:mux_window():tabs()
+			local current = win:active_tab():tab_id()
+			local count = #tab_bar
+			for i, tab in ipairs(tab_bar) do
+				if tab:tab_id() == current then
+					local next_i = (i % count) + 1
+					tab_bar[next_i]:activate()
+					break
+				end
+			end
+		end),
+	},
+	-- Leader + p → prev tab (wraps around)
+	{
+		key = "p",
+		mods = "LEADER",
+		action = wezterm.action_callback(function(win, pane)
+			local tab_bar = win:mux_window():tabs()
+			local current = win:active_tab():tab_id()
+			local count = #tab_bar
+			for i, tab in ipairs(tab_bar) do
+				if tab:tab_id() == current then
+					local prev_i = ((i - 2) % count) + 1
+					tab_bar[prev_i]:activate()
+					break
+				end
+			end
+		end),
+	},
 }
+
 for i = 1, 9 do
 	table.insert(config.keys, {
 		key = tostring(i),
