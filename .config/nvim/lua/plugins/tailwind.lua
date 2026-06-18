@@ -3,6 +3,9 @@ return {
     "laytan/tailwind-sorter.nvim",
     branch = "main",
     dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-lua/plenary.nvim" },
+    init = function()
+      require("nvim-treesitter")
+    end,
     build = "cd formatter && npm ci && npm run build",
     config = true,
     opts = {

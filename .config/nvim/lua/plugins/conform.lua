@@ -10,6 +10,7 @@ return {
       typescriptreact = { "prettier" },
       jsx = { "prettier" },
       tsx = { "prettier" },
+      json = { "fixjson" },
     },
     formatters = {
       gdformat = {
