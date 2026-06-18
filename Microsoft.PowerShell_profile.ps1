@@ -10,7 +10,8 @@ if (Test-Path $ChocolateyProfile) {
 }
 
 function makevideo($inputFile, $outputFile, $framerate = 25, $start = 1) {
-  ffmpeg -framerate $framerate  -start_number $start -i $inputFile -c:v libx264 -pix_fmt yuv420p $outputFile
+  # Uses ffmpeg directly
+  ffmpeg -framerate $framerate -start_number $start -i "$inputFile" -c:v libx264 -pix_fmt yuv420p "$outputFile"
 }
 
 # YAZI START
@@ -25,14 +26,8 @@ function y {
 }
 # YAZI END
 
-function makevideo($inputFile, $outputFile, $framerate = 25, $start = 1) {
-  # Assuming you save the Python script at C:\Scripts\image_processor.py
-  python d:\Code\lv-helpers\image2sequence.py $inputFile --framerate $framerate --start $start
-}
-
-function makewebp($inputFile, $outputFile, $framerate = 25, $start = 1) {
-  # Assuming you save the Python script at C:\Scripts\image_processor.py
-  ffmpeg -i "$inputFile"-loop 1 -an -vf fps=fps=25 "$outputFile"
+function makewebp($inputFile, $outputFile) {
+  ffmpeg -i "$inputFile" -loop 1 -an -vf fps=fps=25 "$outputFile"
 }
 
 function joinvideos {
@@ -44,15 +39,15 @@ function joinvideos {
     )
 
     # Build the argument list properly
-    $args = @()
+    $argList = @()
     foreach ($video in $videos) {
-        $args += $video
+        $argList += $video
     }
-    $args += "--output"
-    $args += $output
+    $argList += "--output"
+    $argList += $output
 
     # Call python with the properly separated arguments
-    & python "d:\Code\lv-helpers\joinvideos.py" $args
+    & python "d:\Code\lv-helpers\joinvideos.py" $argList
 }
 
 # aliases
@@ -90,14 +85,10 @@ function lvclone {
     )
     git clone https://github.com/lukevanlukevan/$repo.git
   }
-$ompCache = "$env:LOCALAPPDATA\omp-init-cache.ps1"
-if (-not (Test-Path $ompCache)) {
-    oh-my-posh init pwsh --config 'takuya' | Out-File $ompCache -Encoding UTF8
-}
-. $ompCache
 
 $zoxCache = "$env:LOCALAPPDATA\zoxide-init-cache.ps1"
 if (-not (Test-Path $zoxCache)) {
     zoxide init powershell | Out-File $zoxCache -Encoding UTF8
 }
 . $zoxCache
+oh-my-posh init pwsh --config 'C:\Users\PIC-TWO\AppData\Local\omp-manager\themes\larserikfinholt.omp.json' | Invoke-Expression  # [omp-manager]
