@@ -86,9 +86,7 @@ function lvclone {
     git clone https://github.com/lukevanlukevan/$repo.git
   }
 
-$zoxCache = "$env:LOCALAPPDATA\zoxide-init-cache.ps1"
-if (-not (Test-Path $zoxCache)) {
-    zoxide init powershell | Out-File $zoxCache -Encoding UTF8
-}
-. $zoxCache
-oh-my-posh init pwsh --config 'C:\Users\PIC-TWO\AppData\Local\omp-manager\themes\larserikfinholt.omp.json' | Invoke-Expression  # [omp-manager]
+# oh-my-posh MUST init BEFORE zoxide — zoxide wraps the prompt function to add
+# its hook, so it needs oh-my-posh's prompt to already be in place.
+oh-my-posh init pwsh --config "$HOME\.dotfiles\themes\larserikfinholt.omp.json" | Invoke-Expression
+zoxide init powershell | Out-String | Invoke-Expression
