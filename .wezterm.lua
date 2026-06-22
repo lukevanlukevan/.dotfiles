@@ -83,7 +83,7 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
 end)
 
 -- My keymaps:
-config.debug_key_events = true
+-- config.debug_key_events = true
 config.leader = { key = "a", mods = "CTRL" }
 config.keys = {
 	{
