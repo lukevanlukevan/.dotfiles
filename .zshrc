@@ -20,7 +20,7 @@ source $ZSH/oh-my-zsh.sh
 
 # ... (other interactive shell configurations) ...
 
-eval "$(oh-my-posh init zsh --config $(brew --prefix oh-my-posh)/themes/Takuya.omp.json)"
+eval "$(oh-my-posh init zsh --config "$HOME/.dotfiles/themes/larserikfinholt.omp.json")"
 eval "$(zoxide init zsh)"
 # eval "$(/opt/homebrew/bin/brew shellenv)"
 # >>> conda initialize >>>
