@@ -88,5 +88,5 @@ function lvclone {
 
 # oh-my-posh MUST init BEFORE zoxide — zoxide wraps the prompt function to add
 # its hook, so it needs oh-my-posh's prompt to already be in place.
-oh-my-posh init pwsh --config "$HOME\.dotfiles\themes\larserikfinholt.omp.json" | Invoke-Expression
+oh-my-posh init pwsh --config "$HOME\.dotfiles\themes\larserikfinholt-pill.omp.json" | Invoke-Expression
 zoxide init powershell | Out-String | Invoke-Expression

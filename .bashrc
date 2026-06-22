@@ -82,7 +82,7 @@ fi
 # added by luke
 export PATH="$HOME/.local/bin:$PATH"
 eval "$(zoxide init bash)"
-eval "$(oh-my-posh init bash --config "$HOME/.dotfiles/themes/larserikfinholt.omp.json")"
+eval "$(oh-my-posh init bash --config "$HOME/.dotfiles/themes/larserikfinholt-pill.omp.json")"
 
 # Define session names and associated commands
 start_tmux_sessions() {
